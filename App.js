@@ -22,7 +22,6 @@ export default function App() {
           component={CancionScreen}
           // initialParams={{ songId: 0 }}
         />
-        {/* <Stack.Screen name="" component={}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
