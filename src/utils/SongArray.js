@@ -24,7 +24,7 @@ export default SongArray = [
         ],
       },
       {
-        type: "chorus",
+        type: "choir",
         paragraph: [
           {
             text: "Quiero ver tu majestad",
@@ -128,3 +128,37 @@ export default SongArray = [
     number: 2,
   },
 ];
+
+const DefaultSong = {
+  title: "Mi Titulo",
+  lyrics: [
+    {
+      type: "standard",
+      paragraph: [
+        { text: "primera estrofa", chords: [{ note: "C", position: 0 }] },
+        { text: "adsfasdfasdf", chords: [{ note: "Em", position: 6 }] },
+      ],
+    },
+    {
+      type: "choir",
+      paragraph: [
+        { text: "coro letra", chords: [{ note: "C#5", position: 6 }] },
+        { text: "adsfasdfasdf", chords: [{ note: "D#7#9", position: 6 }] },
+      ],
+    },
+    {
+      type: "standard",
+      paragraph: [
+        { text: "segunda estrofa", chords: [{ note: "D", position: 6 }] },
+        { text: "adsfasdfasdf", chords: [{ note: "Gm7", position: 6 }] },
+      ],
+    },
+    {
+      type: "standard",
+      paragraph: [
+        { text: "tercera estrofa", chords: [{ note: "Dmaj7", position: 6 }] },
+        { text: "adsfasdfasdf", chords: [{ note: "Am/F", position: 9 }] },
+      ],
+    },
+  ],
+};
