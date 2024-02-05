@@ -10,63 +10,63 @@ const DefaultSong = {
   lyrics: [
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "primera estrofa", chords: [{ note: "C", position: 0 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Em", position: 6 }] },
       ],
     },
     {
       type: "choir",
-      paragraph: [
+      Verse: [
         { text: "coro letra", chords: [{ note: "C#5", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "D#7#9", position: 6 }] },
       ],
     },
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "segunda estrofa", chords: [{ note: "D", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Gm7", position: 6 }] },
       ],
     },
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "tercera estrofa", chords: [{ note: "Dmaj7", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Am/F", position: 9 }] },
       ],
     },
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "tercera estrofa", chords: [{ note: "Dmaj7", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Am/F", position: 9 }] },
       ],
     },
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "cuarta estrofa", chords: [{ note: "Dmaj7", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Am/F", position: 9 }] },
       ],
     },
     {
       type: "choir",
-      paragraph: [
+      Verse: [
         { text: "coro letra", chords: [{ note: "C#5", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "D#7#9", position: 6 }] },
       ],
     },
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "quinta estrofa", chords: [{ note: "Dmaj7", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Am/F", position: 9 }] },
       ],
     },
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "sexta estrofa", chords: [{ note: "Dmaj7", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Am/F", position: 9 }] },
       ],
@@ -75,6 +75,7 @@ const DefaultSong = {
 };
 
 const { width: screenWidth } = Dimensions.get("window");
+const { height: screenHeight } = Dimensions.get("window");
 
 const CancionScreen = ({ route }) => {
   const songId = route.params ? route.params.songId : undefined; //for some reason God knows why this prop "route" can ONLY be called route, if i change it to propId it breaks
@@ -82,13 +83,23 @@ const CancionScreen = ({ route }) => {
     Number.isInteger(songId) ? SongArray[songId] : DefaultSong //hre im comparing if the number basically exist else its going to go with the defaultSong
   );
 
+  let TotalHeight = 70; //this is the padding of the HeadLine
+  const addHeight = song.lyrics.forEach((verse) => {
+    TotalHeight += 31; //this is the padding that each verse has
+    verse.Verse.forEach((line) => {
+      TotalHeight += 46; //this is the padding that every text has plus the fontSize
+    });
+  });
+
+  console.log(TotalHeight); //if i need to round the number for the zoom, i can do TotalHeight.toFixed(1); and it will round it to 1 decimal
+  console.log(screenHeight / (TotalHeight + 30));
   return (
     <View style={styles.container}>
       <ReactNativeZoomableView
-        maxZoom={10}
+        maxZoom={2.5}
         minZoom={1}
         initialZoom={1}
-        contentHeight={1100} //ToDo hay que hacer una ecuacion para que funcione esto con los diferentes tipos de letras
+        contentHeight={TotalHeight} //ToDo hay que hacer una ecuacion para que funcione esto con los diferentes tipos de letras
         //tambien hay que hacer que cuando se entre al corito se vea el titulo.
       >
         {/* <ScrollView> */}
@@ -99,8 +110,9 @@ const CancionScreen = ({ route }) => {
           // coro
           estrofa.type == "choir" ? (
             <View key={"estrofa_" + i} style={styles.choir}>
-              {estrofa?.paragraph.map((parrafo, k) => (
-                <Text key={i + "_" + k} style={{ alignContent: "center" }}>
+              <Text style={styles.choirTop}>CORO: </Text>
+              {estrofa?.Verse.map((parrafo, k) => (
+                <Text key={i + "_" + k} style={{ textAlign: "center" }}>
                   <TextWithChords {...parrafo} />
                 </Text> //aca estoy diciendo que quiero que le muestre
               ))}
@@ -110,7 +122,7 @@ const CancionScreen = ({ route }) => {
 
             // estrofas
             <View key={"estrofa_" + i} style={styles.estrofa}>
-              {estrofa?.paragraph.map((parrafo, k) => (
+              {estrofa?.Verse.map((parrafo, k) => (
                 <Text key={i + "_" + k}>
                   <TextWithChords {...parrafo} />
                 </Text>
@@ -129,7 +141,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    justifyContent: "center",
+    //justifyContent: "center",
   },
   titulo: {
     fontSize: 40,
@@ -141,13 +153,26 @@ const styles = StyleSheet.create({
   },
   choir: {
     marginBottom: 20,
-    backgroundColor: "#c3c3c3",
-    alignItems: "center",
+    borderWidth: 5,
+    borderColor: "#c3c3c3",
+    borderRadius: 10,
+    width: 200,
+    paddingBottom: 10,
+  },
+  choirTop: {
+    fontSize: 16,
+    paddingLeft: 8,
+    fontWeight: "bold",
+    paddingTop: 5,
   },
   estrofa: {
     marginBottom: 20,
-    alignItems: "center",
+    textAlign: "center",
+    //alignItems: "center",
   },
 });
 
 export default CancionScreen;
+
+// estaria bueno hacer que los coros esten encerrados como en una cajita
+// estaria piola que el minzoom sea el screenHeight/lyricSize

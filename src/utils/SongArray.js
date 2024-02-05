@@ -4,7 +4,7 @@ export default SongArray = [
     lyrics: [
       {
         type: "standard",
-        paragraph: [
+        Verse: [
           {
             text: "Abre mis ojos Oh Cristo,",
             chords: [{ note: "D", position: 0 }],
@@ -25,7 +25,7 @@ export default SongArray = [
       },
       {
         type: "choir",
-        paragraph: [
+        Verse: [
           {
             text: "Quiero ver tu majestad",
             chords: [
@@ -58,7 +58,7 @@ export default SongArray = [
       },
       {
         type: "standard",
-        paragraph: [
+        Verse: [
           {
             text: "Santo, Santo, Santo,(Eres)",
             chords: [{ note: "D", position: 0 }],
@@ -86,7 +86,7 @@ export default SongArray = [
     lyrics: [
       {
         type: "standard",
-        paragraph: [
+        Verse: [
           {
             text: "Al comenzar la semana, ¡qué alegría que me da",
             chords: [
@@ -134,28 +134,28 @@ const DefaultSong = {
   lyrics: [
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "primera estrofa", chords: [{ note: "C", position: 0 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Em", position: 6 }] },
       ],
     },
     {
       type: "choir",
-      paragraph: [
+      Verse: [
         { text: "coro letra", chords: [{ note: "C#5", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "D#7#9", position: 6 }] },
       ],
     },
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "segunda estrofa", chords: [{ note: "D", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Gm7", position: 6 }] },
       ],
     },
     {
       type: "standard",
-      paragraph: [
+      Verse: [
         { text: "tercera estrofa", chords: [{ note: "Dmaj7", position: 6 }] },
         { text: "adsfasdfasdf", chords: [{ note: "Am/F", position: 9 }] },
       ],

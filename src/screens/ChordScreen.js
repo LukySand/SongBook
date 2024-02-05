@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-const TextWithChords = (PropVerse) => {
-  const DefaultVerse = {
+const TextWithChords = (PropLine) => {
+  const DefaultLine = {
     text: "el nombre de Jesucristo, nuestro amigo más leal.",
     chords: [
       { note: "C7", position: 0 },
@@ -12,18 +12,15 @@ const TextWithChords = (PropVerse) => {
       { note: "G", position: 45 },
     ],
   };
-  const [verse, setVerse] = React.useState(
-    PropVerse.text ? PropVerse : DefaultVerse
+  const [line, setLine] = React.useState(
+    PropLine.text ? PropLine : DefaultLine
   );
-
-  //console.log(verse.chords);
 
   return (
     <View>
-      {/* <View style={styles.container}> */}
       <Text style={styles.text}>
-        {verse.text.split("").map((char, index) => {
-          const chord = verse.chords.find((c) => c.position === index);
+        {line.text.split("").map((char, index) => {
+          const chord = line.chords.find((c) => c.position === index);
 
           return (
             <View key={index}>
@@ -48,14 +45,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   text: {
-    fontSize: 16,
     textAlign: "center",
     paddingTop: 25,
   },
   chordContainer: {
     position: "absolute",
     top: -20, // Ajusta según sea necesario
-    left: 0,
+    left: -1,
   },
   chord: {
     fontSize: 20,
