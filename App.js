@@ -10,6 +10,9 @@ import HomeScreen from "./src/screens/HomeScreen";
 import ChordScreen from "./src/screens/ChordScreen";
 import CancionScreen from "./src/screens/SongScreen";
 
+//components
+import SongList from "./src/components/SongList";
+
 const Stack = createNativeStackNavigator();
 
 export default function App() {
@@ -20,6 +23,11 @@ export default function App() {
         <Stack.Screen
           name="Lyric"
           component={CancionScreen}
+          // initialParams={{ songId: 0 }}
+        />
+        <Stack.Screen
+          name="List"
+          component={SongList}
           // initialParams={{ songId: 0 }}
         />
       </Stack.Navigator>

@@ -18,6 +18,14 @@ export default function HomeScreen(props) {
       >
         SongScreen
       </Text>
+      <Text
+        style={styles.pressText}
+        onPress={() => {
+          navigation.navigate("List");
+        }}
+      >
+        Song List
+      </Text>
     </View>
   );
 }

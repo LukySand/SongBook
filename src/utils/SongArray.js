@@ -22,6 +22,7 @@ export default SongArray = [
             chords: [{ note: "D", position: 11 }],
           },
         ],
+        number: 0,
       },
       {
         type: "choir",
@@ -129,36 +130,36 @@ export default SongArray = [
   },
 ];
 
-const DefaultSong = {
-  title: "Mi Titulo",
-  lyrics: [
-    {
-      type: "standard",
-      Verse: [
-        { text: "primera estrofa", chords: [{ note: "C", position: 0 }] },
-        { text: "adsfasdfasdf", chords: [{ note: "Em", position: 6 }] },
-      ],
-    },
-    {
-      type: "choir",
-      Verse: [
-        { text: "coro letra", chords: [{ note: "C#5", position: 6 }] },
-        { text: "adsfasdfasdf", chords: [{ note: "D#7#9", position: 6 }] },
-      ],
-    },
-    {
-      type: "standard",
-      Verse: [
-        { text: "segunda estrofa", chords: [{ note: "D", position: 6 }] },
-        { text: "adsfasdfasdf", chords: [{ note: "Gm7", position: 6 }] },
-      ],
-    },
-    {
-      type: "standard",
-      Verse: [
-        { text: "tercera estrofa", chords: [{ note: "Dmaj7", position: 6 }] },
-        { text: "adsfasdfasdf", chords: [{ note: "Am/F", position: 9 }] },
-      ],
-    },
-  ],
-};
+// const DefaultSong = {
+//   title: "Mi Titulo",
+//   lyrics: [
+//     {
+//       type: "standard",
+//       Verse: [
+//         { text: "primera estrofa", chords: [{ note: "C", position: 0 }] },
+//         { text: "adsfasdfasdf", chords: [{ note: "Em", position: 6 }] },
+//       ],
+//     },
+//     {
+//       type: "choir",
+//       Verse: [
+//         { text: "coro letra", chords: [{ note: "C#5", position: 6 }] },
+//         { text: "adsfasdfasdf", chords: [{ note: "D#7#9", position: 6 }] },
+//       ],
+//     },
+//     {
+//       type: "standard",
+//       Verse: [
+//         { text: "segunda estrofa", chords: [{ note: "D", position: 6 }] },
+//         { text: "adsfasdfasdf", chords: [{ note: "Gm7", position: 6 }] },
+//       ],
+//     },
+//     {
+//       type: "standard",
+//       Verse: [
+//         { text: "tercera estrofa", chords: [{ note: "Dmaj7", position: 6 }] },
+//         { text: "adsfasdfasdf", chords: [{ note: "Am/F", position: 9 }] },
+//       ],
+//     },
+//   ],
+// };

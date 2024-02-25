@@ -83,26 +83,39 @@ const CancionScreen = ({ route }) => {
     Number.isInteger(songId) ? SongArray[songId] : DefaultSong //hre im comparing if the number basically exist else its going to go with the defaultSong
   );
 
-  let TotalHeight = 70; //this is the padding of the HeadLine
-  const addHeight = song.lyrics.forEach((verse) => {
-    TotalHeight += 31; //this is the padding that each verse has
-    verse.Verse.forEach((line) => {
-      TotalHeight += 46; //this is the padding that every text has plus the fontSize
-    });
-  });
+  // const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
+  const dimensions = React.useRef({ width: 0, height: 0 });
 
-  console.log(TotalHeight); //if i need to round the number for the zoom, i can do TotalHeight.toFixed(1); and it will round it to 1 decimal
-  console.log(screenHeight / (TotalHeight + 30));
+  const onLayout = (event) => {
+    const { width, height } = event.nativeEvent.layout;
+    dimensions.current = { width, height };
+    console.log(dimensions.current);
+  };
+
+  let TotalHeight = 70; // Altura del encabezado
+  TotalHeight += song.lyrics.reduce((acc, estrofa) => {
+    acc += 31; // Altura de cada estrofa
+    estrofa.Verse.forEach((line) => {
+      acc += 46; // Altura de cada línea
+    });
+    return acc;
+  }, 0);
+
+  // console.log(dimensions.current);
+  console.log(screenHeight);
+  // console.log(TotalHeight); //if i need to round the number for the zoom, i can do TotalHeight.toFixed(1); and it will round it to 1 decimal
+  // console.log(screenHeight / (TotalHeight + 30));
   return (
-    <View style={styles.container}>
+    <View style={styles.container} onLayout={onLayout}>
+      {/* <ScrollView> */}
       <ReactNativeZoomableView
         maxZoom={2.5}
         minZoom={1}
         initialZoom={1}
         contentHeight={TotalHeight} //ToDo hay que hacer una ecuacion para que funcione esto con los diferentes tipos de letras
         //tambien hay que hacer que cuando se entre al corito se vea el titulo.
+        initialOffsetY={0}
       >
-        {/* <ScrollView> */}
         <View>
           <Text style={styles.titulo}>{song?.title}</Text>
         </View>
@@ -130,8 +143,8 @@ const CancionScreen = ({ route }) => {
             </View>
           )
         )}
-        {/* </ScrollView> */}
       </ReactNativeZoomableView>
+      {/* </ScrollView> */}
     </View>
   );
 };
@@ -141,7 +154,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    //justifyContent: "center",
   },
   titulo: {
     fontSize: 40,
